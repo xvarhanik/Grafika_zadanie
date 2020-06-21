@@ -516,21 +516,8 @@ QList<My3Dpoint> ViewerWidget::sortByX(QList<My3Dpoint> points)
      while (i <= steps)
      {
         //priblizny vypocey z-ovej suradnice bodu
-        My3Dpoint dxx = My3Dpoint(B.getX() - A.getX(), B.getY() - A.getY(), B.getZ() - A.getZ());
-        double s;
-        if(dxx.getX()==0&&dxx.getY()==0)
-        {
-            s=0;
-        }
-        else if(dxx.getY()==0)
-        {
-            s = (X - A.getX()) / dxx.getX();
-        }
-        else
-        {
-          s = (Y - A.getY()) / dxx.getY();
-        }
-        int z=(int)(A.getZ() + (dxx.getZ() * s));
+       
+        int z=createY(A,B,X,Y);
          My3Dpoint toApp(X,Y,z);
         //kontrola ci som v obrazku
         if(X>=img->width()||Y>=img->height()||X<0||Y<0)
